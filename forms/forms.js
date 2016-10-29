@@ -36,7 +36,7 @@ $(document).ready(function() {
     });
 
     function appendDom(empInfo) {
-
+      var temp;
 
       $('#employeeData').append('<div class="employee"></div>');
       var $el = $('#employeeData').children().last();
@@ -51,18 +51,20 @@ $(document).ready(function() {
       $('#employeeData').append($el);
 
       empInfo.employeeSalary = parseInt(empInfo.employeeSalary);
+      temp = empInfo.employeeSalary;
 
-      console.log("empInfo.employeeSalary " + empInfo.employeeSalary);
+      //console.log("empInfo.employeeSalary " + empInfo.employeeSalary + 12);
 
-      console.log(typeof(empInfo.employeeSalary))
-      console.log("employee.employeeSalary " + (employee.employeeSalary / 2));
-      singleMonthly = employee.employeeSalary / 12;
+      console.log(empInfo.employeeSalary);
+      console.log("employee.employeeSalary " + temp);
+      singleMonthly = temp / 12;
       singleMonthly = parseFloat(singleMonthly);
+      var monthly = singleMonthly;
 
       console.log("Single Monthly", singleMonthly);
-      console.log("Total Monthly", totalMonthly);
+      console.log("Total Monthly", monthly);
 
-      totalMonthly += singleMonthly;
+      totalMonthly += monthly;
       totalMonthly = Math.round(totalMonthly);
 
       $("#employeeMonthlySalary").empty();
