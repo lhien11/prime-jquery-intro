@@ -1,83 +1,110 @@
-var employee = {}; // variable to hold serialized inputs
-var singleMonthly = 0;
-var totalMonthly = 0;
+/*--GLOBAL VARIABLES--*/
+var employee = {}; //variable for storing form inputs once serialized
+var singleMonthly = 0; //variable for storing single employee's salary (divided by 12)
+var totalMonthly = 0; //variable for storing combined salary of all employees (divided by 12)
+//var employeeSal = {};
 
+/*--JQUERY DOCUMENT OBJECT--*/
 $(document).ready(function() {
-    var array = [];
-    $('#employeeinfo').on('submit', function(event) {
-      event.preventDefault();
+    /*--EVENT LISTENER--*/
+    $('#employeeInfo').on('submit', function(event) {
+        /*--event.preventDefault() stops the page from jumping when event is triggered
+         "event" must be passed into the function as a parameter--*/
+        event.preventDefault();
 
-      // initialize a new variable as an empty object
-      var values = {};
+        /*--serializeArray() turns the form inputs into an object literal --*/
+        var fields = $('#employeeInfo').serializeArray();
+        //console.log('fields', fields);
+        /*-- "fields" is the id on the <form> element--*/
+        fields.forEach(function(element, index) {
+            employee[element.name] = element.value;
 
-      // convert the form inputs into an array
-      var fields = $('#employeeinfo').serializeArray();
+        });
 
-      // iterate over the array and transfer each index into a new property on an object with the value of what was entered.
-      fields.forEach(function(element, index, array) {
-        // review index notation vs. dot notation on objects
-        // here, dot notation wouldn't work
-        values[element.name] = element.value;
-      });
+        //console.log('employee object', employee);
 
-      console.log(values);
+        // employeeSal[employee.employeeFirstName] = employee.employeeSalary;
+        // console.log(employeeSal);
+        //empArray.push(employee);
+        //console.log(empArray);
 
-      // clear out inputs
-      $('#employeeinfo').find('input[type=text]').val('');
-      $('#employeeinfo').find('input[type=number]').val('');
+        // clear form data
+        $('#employeeInfo').find('input[type=text]').val('');
+        $('#employeeInfo').find('input[type=number]').val('');
 
-      // append to DOM
-      appendDom(values);
 
-      /* HARD MODE */
-      $('.employee').on('click', '.delete', removeEmployee);
+        // appending to the DOM
+        appendDom(employee);
+
+        /*HARD MODE Step 2: create Event Listener -- event listener must be inside doc.ready function*/
+         $('.employee').on('click', '.delete', removeEmployee);
+
+
+
 
 
     });
 
     function appendDom(empInfo) {
-      var temp;
+        var $emp = $('<div class="employee"></div>');
 
-      $('#employeeData').append('<div class="employee"></div>');
-      var $el = $('#employeeData').children().last();
+        $emp.append('<p>' + "Employee Name:  " + empInfo.employeeFirstName + ' ' + empInfo.employeeLastName + '</p>');
+        $emp.append('<p>' + "Employee Id:  " + empInfo.employeeIdNumber + '</p>');
+        $emp.append('<p>' + "Employee Job Title:  " + empInfo.employeeJobTitle + '</p>');
 
-      $el.append('<p>' + "Employee Name: " + empInfo.employeefirstname + ' ' + empInfo.employeelastname + '</p>');
-      $el.append('<p>' + "Employee Id: " + empInfo.employeeIdNumber + '</p>');
-      $el.append('<p>' + "Employee Job Title: " + empInfo.employeeJobTitle + '</p>');
-      $el.append('<p>' + "Employee Salary: " + empInfo.employeeSalary + '</p>');
+        $emp.append('<p>' + "Employee Salary:  $" + empInfo.employeeSalary + '</p>');
+        /*HARD MODE Step 1: append Delete button*/
+        $emp.append('<button class = "delete">' + "Delete" + '</button>');
 
-      $el.append('<button class = "delete">' + "Delete" + '</button>');
 
-      $('#employeeData').append($el);
+        $('#employeeData').append($emp);
+        /*-convert salary property of object from a string to a number   -*/
+        empInfo.employeeSalary = parseInt(empInfo.employeeSalary);
+        // employeeSal[empInfo.employeeFirstName] = empInfo.employeeSalary;
+        // console.log(employeeSal);
+        // console.log("Single Monthly", singleMonthly);
+        //console.log("Total Monthly", totalMonthly);
+        /*-assign the value of 1/12th of annual salary to a variable-*/
+        singleMonthly = employee.employeeSalary / 12;
+        //console.log("Single Monthly", singleMonthly);
 
-      empInfo.employeeSalary = parseInt(empInfo.employeeSalary);
-      temp = empInfo.employeeSalary;
+        singleMonthly = parseFloat(singleMonthly);
+        //console.log("Single Monthly", singleMonthly);
 
-      //console.log("empInfo.employeeSalary " + empInfo.employeeSalary + 12);
-
-      console.log(empInfo.employeeSalary);
-      console.log("employee.employeeSalary " + temp);
-      singleMonthly = temp / 12;
-      singleMonthly = parseFloat(singleMonthly);
-      var monthly = singleMonthly;
-
-      console.log("Single Monthly", singleMonthly);
-      console.log("Total Monthly", monthly);
-
-      totalMonthly += monthly;
-      totalMonthly = Math.round(totalMonthly);
-
-      $("#employeeMonthlySalary").empty();
-
-      $("#employeeMonthlySalary").text("$" + totalMonthly);
-
+        /*transfer monthly salary (1/12th annual salary) to a new variable (since singleMonthly variable gets reset for every employee object) -*/
+        totalMonthly += singleMonthly;
+        totalMonthly = Math.round(totalMonthly);
+        console.log("Single Monthly", singleMonthly);
+        console.log("Total Monthly", totalMonthly);
+        /*- empty <div> that holds previous total monthly salary for all employees  -*/
+        $("#employeeMonthlySalary").empty();
+        console.log("Single Monthly", singleMonthly);
+        console.log("Total Monthly", totalMonthly);
+        /*- inserts the new total monthly salary for all employees in the <div> --*/
+        $("#employeeMonthlySalary").text("$" + totalMonthly);
 
 
     }
 
-    function removeEmployee(){
-      $(this).parent().remove();
-    }
+    /*HARD MODE Step 3: create Function*/
+    function removeEmployee() {
+       console.log(this);
+       console.log($(this));
+       console.log($(this.parent));
+
+       //Step 3a subtract employee salary from total
+       console.log(totalMonthly);
+
+
+       //totalMonthly -= this.
+
+       //Step 3b remove employee from DOM
+        $(this).parent().remove();
+
+      }
+
+
+
 
 
 });

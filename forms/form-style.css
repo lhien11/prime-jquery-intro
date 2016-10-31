@@ -1,18 +1,57 @@
-h1 {
-  color: teal;
+body {
+
+background-color: #FFFAF0; /* A light white background color */
+font-family: 'Open Sans', serif;
+
 }
 
-#container {
-  border: 1px solid blue;
-  padding: 10px;
-  margin: 30px;
+.employee {
+width: 400px;
+border-style: solid;
+border-color: #517398; /*dark moderate blue*/
+border-width: 3px;
+display: block;
+padding: 20px;
+margin: 20px;
+
 }
 
-.person {
-  border: 2px solid black;
-  padding: 2px;
+#employeeInfo {
+
+font-family: 'Open Sans', serif;
+background-color: #517398; /*dark moderate blue*/
+border-radius: 5px;
+padding: 20px;
+margin: 20px;
+
+
 }
 
-.clicked {
-  border-color: red;
+
+
+#employeeData {
+
+background-color: #87CEFA;  /*light grayish yellow*/
+font-family: 'Open Sans', serif;
+border-radius: 10px;
+padding: 20px;
+margin: 20px;
+
+}
+
+
+#employeeMonthlySalary {
+
+background-color: #AFEEEE; /*light grayish yellow*/
+font-family: 'Open Sans', serif;
+border-radius: 10px;
+padding: 20px;
+margin: 20px;
+width: 75px;
+}
+
+h4 {
+
+margin: 30px;
+
 }
