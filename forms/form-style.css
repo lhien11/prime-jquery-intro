@@ -8,7 +8,7 @@ font-family: 'Open Sans', serif;
 .employee {
 width: 400px;
 border-style: solid;
-border-color: #517398; /*dark moderate blue*/
+border-color: #215D7F; /*dark moderate blue*/
 border-width: 3px;
 display: block;
 padding: 20px;
@@ -19,7 +19,7 @@ margin: 20px;
 #employeeInfo {
 
 font-family: 'Open Sans', serif;
-background-color: #517398; /*dark moderate blue*/
+background-color: #3BA7E5; /*dark moderate blue*/
 border-radius: 5px;
 padding: 20px;
 margin: 20px;
@@ -31,7 +31,7 @@ margin: 20px;
 
 #employeeData {
 
-background-color: #87CEFA;  /*light grayish yellow*/
+background-color: #87CEFA;  /*light bluish yellow*/
 font-family: 'Open Sans', serif;
 border-radius: 10px;
 padding: 20px;
@@ -42,7 +42,7 @@ margin: 20px;
 
 #employeeMonthlySalary {
 
-background-color: #AFEEEE; /*light grayish yellow*/
+background-color: #318BBF; /*light bluish yellow*/
 font-family: 'Open Sans', serif;
 border-radius: 10px;
 padding: 20px;

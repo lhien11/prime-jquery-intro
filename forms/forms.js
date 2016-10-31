@@ -88,15 +88,12 @@ $(document).ready(function() {
 
     /*HARD MODE Step 3: create Function*/
     function removeEmployee() {
-       console.log(this);
-       console.log($(this));
-       console.log($(this.parent));
+       //console.log(this);
+      // console.log($(this));
+      // console.log($(this.parent));
 
        //Step 3a subtract employee salary from total
-       console.log(totalMonthly);
-
-
-       //totalMonthly -= this.
+       //console.log(totalMonthly);
 
        //Step 3b remove employee from DOM
         $(this).parent().remove();
